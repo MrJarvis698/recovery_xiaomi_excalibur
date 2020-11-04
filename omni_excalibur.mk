@@ -32,6 +32,16 @@ PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi Note 9 Pro Max
 PRODUCT_MANUFACTURER := Xiaomi
 
+#Prebuilt Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+LOCAL_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+else
+LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+     $(LOCAL_KERNEL):kernel
+
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
